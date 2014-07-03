@@ -69,6 +69,8 @@ const char *archc_options="";
 
 #include "ac_utils.H"
 #include "ac_tlm_protocol.H"
+#include  "../../counter_instruction_type.h"
+#include  "../../counter_instruction_type.cpp"
 
 //#define AC_DEBUG
 
@@ -318,6 +320,8 @@ int sc_main(int ac, char *av[])
 		delete processors[i];
 	}
 	delete processors;
+	
+	CounterInstructionType::print();
 
 	return status; 
 }

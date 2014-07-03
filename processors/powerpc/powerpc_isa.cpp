@@ -49,6 +49,7 @@
 //#define DEBUG_MODEL
 
 #include  "ac_debug_model.H"
+#include  "../../counter_instruction_type.h"
 
 #define measures 0
 #define DEFAULT_STACK_SIZE (512 * 1024)   
@@ -555,7 +556,7 @@ void ac_behavior( add )
   dbg_printf(" add r%d, r%d, r%d\n\n",rt,ra,rb);
   GPR.write(rt,GPR.read(ra) + GPR.read(rb));
 
-};
+CounterInstructionType::add("add");};
 
 //!Instruction add_ behavior method.
 void ac_behavior( add_ )
@@ -566,7 +567,7 @@ void ac_behavior( add_ )
   CR0_update(CR, XER, result);
   GPR.write(rt,result);
 
-};
+CounterInstructionType::add("add_");};
 
 //!Instruction addo behavior method.
 void ac_behavior( addo )
@@ -578,7 +579,7 @@ void ac_behavior( addo )
 
   GPR.write(rt,result);
 
-};
+CounterInstructionType::add("addo");};
 
 //!Instruction addo_ behavior method.
 void ac_behavior( addo_ )
@@ -591,7 +592,7 @@ void ac_behavior( addo_ )
   CR0_update(CR, XER, result);
   GPR.write(rt,result);
 
-};
+CounterInstructionType::add("addo_");};
 
 //!Instruction addc behavior method.
 void ac_behavior( addc )
@@ -602,7 +603,7 @@ void ac_behavior( addc )
   add_XER_CA_update(XER, result,GPR.read(ra),GPR.read(rb),0);
   GPR.write(rt,result);
 
-};
+CounterInstructionType::add("addc");};
 
 //!Instruction addc_ behavior method.
 void ac_behavior( addc_ )
@@ -614,7 +615,7 @@ void ac_behavior( addc_ )
 
   CR0_update(CR, XER, result);
 
-};
+CounterInstructionType::add("addc_");};
 
 //!Instruction addco behavior method.
 void ac_behavior( addco )
@@ -628,7 +629,7 @@ void ac_behavior( addco )
 
   GPR.write(rt,result);
 
-};
+CounterInstructionType::add("addco");};
 
 //!Instruction addco_ behavior method.
 void ac_behavior( addco_ )
@@ -644,7 +645,7 @@ void ac_behavior( addco_ )
   
   GPR.write(rt,result);
 
-};
+CounterInstructionType::add("addco_");};
 
 //!Instruction adde behavior method.
 void ac_behavior( adde )
@@ -657,7 +658,7 @@ void ac_behavior( adde )
 
   GPR.write(rt,result);
 
-};
+CounterInstructionType::add("adde");};
 
 //!Instruction adde_ behavior method.
 void ac_behavior( adde_ )
@@ -671,7 +672,7 @@ void ac_behavior( adde_ )
   CR0_update(CR, XER, result);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("adde_");};
 
 //!Instruction addeo behavior method.
 void ac_behavior( addeo )
@@ -685,7 +686,7 @@ void ac_behavior( addeo )
   add_XER_OV_SO_update(XER, result,GPR.read(ra),GPR.read(rb),XER_CA_read(XER));
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("addeo");};
 
 //!Instruction addeo_ behavior method.
 void ac_behavior( addeo_ )
@@ -701,7 +702,7 @@ void ac_behavior( addeo_ )
   CR0_update(CR, XER, result);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("addeo_");};
 
 //!Instruction addi behavior method.
 void ac_behavior( addi )
@@ -715,7 +716,7 @@ void ac_behavior( addi )
   else
     GPR.write(rt,GPR.read(ra)+ime32);
   
-};
+CounterInstructionType::add("addi");};
 
 //!Instruction addic behavior method.
 void ac_behavior( addic )
@@ -727,7 +728,7 @@ void ac_behavior( addic )
   add_XER_CA_update(XER, result,GPR.read(ra),ime32,0);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("addic");};
 
 //!Instruction addic_ behavior method.
 void ac_behavior( addic_ )
@@ -742,7 +743,7 @@ void ac_behavior( addic_ )
   CR0_update(CR, XER, result);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("addic_");};
 
 //!Instruction addis behavior method.
 void ac_behavior( addis )
@@ -756,7 +757,7 @@ void ac_behavior( addis )
   else
     GPR.write(rt,GPR.read(ra)+ime32);
     
-};
+CounterInstructionType::add("addis");};
 
 //!Instruction addme behavior method.
 void ac_behavior( addme )
@@ -767,7 +768,7 @@ void ac_behavior( addme )
   add_XER_CA_update(XER, result,GPR.read(ra),XER_CA_read(XER),-1);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("addme");};
 
 //!Instruction addme_ behavior method.
 void ac_behavior( addme_ )
@@ -780,7 +781,7 @@ void ac_behavior( addme_ )
   CR0_update(CR, XER, result);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("addme_");};
 
 //!Instruction addmeo behavior method.
 void ac_behavior( addmeo )
@@ -793,7 +794,7 @@ void ac_behavior( addmeo )
   add_XER_OV_SO_update(XER, result,GPR.read(ra),XER_CA_read(XER),-1);
  
   GPR.write(rt,result);
-};
+CounterInstructionType::add("addmeo");};
 
 //!Instruction addmeo_ behavior method.
 void ac_behavior( addmeo_ )
@@ -808,7 +809,7 @@ void ac_behavior( addmeo_ )
   CR0_update(CR, XER, result);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("addmeo_");};
 
 //!Instruction addze behavior method.
 void ac_behavior( addze )
@@ -819,7 +820,7 @@ void ac_behavior( addze )
   add_XER_CA_update(XER, result,GPR.read(ra),XER_CA_read(XER),0);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("addze");};
 
 //!Instruction addze_ behavior method.
 void ac_behavior( addze_ )
@@ -832,7 +833,7 @@ void ac_behavior( addze_ )
   CR0_update(CR, XER, result);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("addze_");};
 
 //!Instruction addzeo behavior method.
 void ac_behavior( addzeo )
@@ -845,7 +846,7 @@ void ac_behavior( addzeo )
   add_XER_OV_SO_update(XER, result,GPR.read(ra),XER_CA_read(XER),0);  
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("addzeo");};
 
 //!Instruction addzeo_ behavior method.
 void ac_behavior( addzeo_ )
@@ -860,7 +861,7 @@ void ac_behavior( addzeo_ )
   CR0_update(CR, XER, result);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("addzeo_");};
 
 //!Instruction ande behavior method.
 void ac_behavior( ande )
@@ -868,7 +869,7 @@ void ac_behavior( ande )
   dbg_printf(" and r%d, r%d, r%d\n\n",ra,rs,rb);
   GPR.write(ra,GPR.read(rs) & GPR.read(rb));
 
-};
+CounterInstructionType::add("ande");};
 
 //!Instruction ande_ behavior method.
 void ac_behavior( ande_ )
@@ -879,7 +880,7 @@ void ac_behavior( ande_ )
   CR0_update(CR, XER, result);
 
   GPR.write(ra,result);
-};
+CounterInstructionType::add("ande_");};
 
 //!Instruction andc behavior method.
 void ac_behavior( andc )
@@ -887,7 +888,7 @@ void ac_behavior( andc )
   dbg_printf(" andc r%d, r%d, r%d\n\n",ra,rs,rb);
   GPR.write(ra,GPR.read(rs) & ~GPR.read(rb));
 
-};
+CounterInstructionType::add("andc");};
 
 //!Instruction ande_ behavior method.
 void ac_behavior( andc_ )
@@ -898,7 +899,7 @@ void ac_behavior( andc_ )
   CR0_update(CR, XER, result);
 
   GPR.write(ra,result);
-};
+CounterInstructionType::add("andc_");};
 
 //!Instruction andi_ behavior method.
 void ac_behavior( andi_ )
@@ -910,7 +911,7 @@ void ac_behavior( andi_ )
   CR0_update(CR, XER, result);
 
   GPR.write(ra,result);
-};
+CounterInstructionType::add("andi_");};
 
 //!Instruction andis_ behavior method.
 void ac_behavior( andis_ )
@@ -924,7 +925,7 @@ void ac_behavior( andis_ )
   CR0_update(CR, XER, result);
 
   GPR.write(ra,result);
-};
+CounterInstructionType::add("andis_");};
 
 //!Instruction b behavior method.
 void ac_behavior( b )
@@ -932,7 +933,7 @@ void ac_behavior( b )
   dbg_printf(" b %d\n\n",li);
   do_Branch(ac_pc, LR, li,aa,lk);
 
-};
+CounterInstructionType::add("b");};
 
 //!Instruction ba behavior method.
 void ac_behavior( ba )
@@ -940,7 +941,7 @@ void ac_behavior( ba )
   dbg_printf(" ba %d\n\n",li);
   do_Branch(ac_pc, LR, li,aa,lk);
 
-};
+CounterInstructionType::add("ba");};
 
 //!Instruction bl behavior method.
 void ac_behavior( bl )
@@ -948,7 +949,7 @@ void ac_behavior( bl )
   dbg_printf(" bl %d\n\n",li);
   do_Branch(ac_pc, LR, li,aa,lk);
   
-};
+CounterInstructionType::add("bl");};
 
 //!Instruction bla behavior method.
 void ac_behavior( bla )
@@ -956,7 +957,7 @@ void ac_behavior( bla )
   dbg_printf(" bla %d\n\n",li);
   do_Branch(ac_pc, LR, li,aa,lk);
 
-};
+CounterInstructionType::add("bla");};
 
 //!Instruction bc behavior method.
 void ac_behavior( bc )
@@ -964,7 +965,7 @@ void ac_behavior( bc )
   dbg_printf(" bc %d, %d, %d\n\n",bo,bi,bd);
   do_Branch_Cond(ac_pc, LR, CR, CTR, bo,bi,bd,aa,lk);
 
-};
+CounterInstructionType::add("bc");};
 
 //!Instruction bca behavior method.
 void ac_behavior( bca )
@@ -972,7 +973,7 @@ void ac_behavior( bca )
   dbg_printf(" bca %d, %d, %d\n\n",bo,bi,bd);
   do_Branch_Cond(ac_pc, LR, CR, CTR, bo,bi,bd,aa,lk);
 
-};
+CounterInstructionType::add("bca");};
 
 //!Instruction bcl behavior method.
 void ac_behavior( bcl )
@@ -980,7 +981,7 @@ void ac_behavior( bcl )
   dbg_printf(" bcl %d, %d, %d\n\n",bo,bi,bd);
   do_Branch_Cond(ac_pc, LR, CR, CTR, bo,bi,bd,aa,lk);
   
-};
+CounterInstructionType::add("bcl");};
 
 //!Instruction bcla behavior method.
 void ac_behavior( bcla )
@@ -988,7 +989,7 @@ void ac_behavior( bcla )
   dbg_printf(" bcla %d, %d, %d\n\n",bo,bi,bd);
   do_Branch_Cond(ac_pc, LR, CR, CTR, bo,bi,bd,aa,lk);
 
-};
+CounterInstructionType::add("bcla");};
 
 //!Instruction bcctr behavior method.
 void ac_behavior( bcctr )
@@ -996,7 +997,7 @@ void ac_behavior( bcctr )
   dbg_printf(" bcctr %d, %d\n\n",bo,bi);
   do_Branch_Cond_Count_Reg(ac_pc, LR, CR, CTR,bo,bi,lk);
 
-};
+CounterInstructionType::add("bcctr");};
 
 //!Instruction bcctrl behavior method.
 void ac_behavior( bcctrl )
@@ -1004,7 +1005,7 @@ void ac_behavior( bcctrl )
   dbg_printf(" bcctrl %d, %d\n\n",bo,bi);
   do_Branch_Cond_Count_Reg(ac_pc, LR, CR, CTR,bo,bi,lk);
 
-};
+CounterInstructionType::add("bcctrl");};
 
 //!Instruction bclr behavior method.
 void ac_behavior( bclr )
@@ -1012,7 +1013,7 @@ void ac_behavior( bclr )
   dbg_printf(" bclr %d, %d\n\n",bo,bi);
   do_Branch_Cond_Link_Reg(ac_pc, LR, CR, CTR,bo,bi,lk);
 
-};
+CounterInstructionType::add("bclr");};
 
 //!Instruction bclrl behavior method.
 void ac_behavior( bclrl )
@@ -1020,7 +1021,7 @@ void ac_behavior( bclrl )
   dbg_printf(" bclrl %d, %d\n\n",bo,bi);
   do_Branch_Cond_Link_Reg(ac_pc, LR, CR, CTR,bo,bi,lk);
 
-};
+CounterInstructionType::add("bclrl");};
 
 //!Instruction cmp behavior method.
 void ac_behavior( cmp )
@@ -1044,7 +1045,7 @@ void ac_behavior( cmp )
     
   CR.write((CR.read() & masc) | c);
   
-};
+CounterInstructionType::add("cmp");};
 
 //!Instruction cmpi behavior method.
 void ac_behavior( cmpi )
@@ -1070,7 +1071,7 @@ void ac_behavior( cmpi )
     
   CR.write((CR.read() & masc) | c);
 
-};
+CounterInstructionType::add("cmpi");};
 
 //!Instruction cmpl behavior method.
 void ac_behavior( cmpl )
@@ -1097,7 +1098,7 @@ void ac_behavior( cmpl )
     
   CR.write((CR.read() & masc) | c);
 
-};
+CounterInstructionType::add("cmpl");};
 
 //!Instruction cmpli behavior method.
 void ac_behavior( cmpli )
@@ -1123,7 +1124,7 @@ void ac_behavior( cmpli )
     
   CR.write((CR.read() & masc) | c);
 
-};
+CounterInstructionType::add("cmpli");};
 
 //!Instruction cntlzw behavior method.
 void ac_behavior( cntlzw )
@@ -1143,7 +1144,7 @@ void ac_behavior( cntlzw )
   
   GPR.write(ra,n);
 
-};
+CounterInstructionType::add("cntlzw");};
 
 //!Instruction cntlzw_ behavior method.
 void ac_behavior( cntlzw_ )
@@ -1164,7 +1165,7 @@ void ac_behavior( cntlzw_ )
   GPR.write(ra,n);
   CR0_update(CR, XER, n); 
 
-};
+CounterInstructionType::add("cntlzw_");};
 
 //!Instruction crand behavior method.
 void ac_behavior( crand )
@@ -1190,7 +1191,7 @@ void ac_behavior( crand )
   else
     CR.write(CR.read() & ~(0x80000000 >> bt));    
 
-};
+CounterInstructionType::add("crand");};
 
 //!Instruction crandc behavior method.
 void ac_behavior( crandc )
@@ -1216,7 +1217,7 @@ void ac_behavior( crandc )
   else
     CR.write(CR.read() & ~(0x80000000 >> bt));    
 
-};
+CounterInstructionType::add("crandc");};
 
 //!Instruction creqv behavior method.
 void ac_behavior( creqv )
@@ -1242,7 +1243,7 @@ void ac_behavior( creqv )
   else
     CR.write(CR.read() & ~(0x80000000 >> bt));    
 
-};
+CounterInstructionType::add("creqv");};
 
 //!Instruction crnand behavior method.
 void ac_behavior( crnand )
@@ -1268,7 +1269,7 @@ void ac_behavior( crnand )
   else
     CR.write(CR.read() & ~(0x80000000 >> bt));    
 
-};
+CounterInstructionType::add("crnand");};
 
 //!Instruction crnor behavior method.
 void ac_behavior( crnor )
@@ -1294,7 +1295,7 @@ void ac_behavior( crnor )
   else
     CR.write(CR.read() & ~(0x80000000 >> bt));    
 
-};
+CounterInstructionType::add("crnor");};
 
 //!Instruction cror behavior method.
 void ac_behavior( cror )
@@ -1320,7 +1321,7 @@ void ac_behavior( cror )
   else
     CR.write(CR.read() & ~(0x80000000 >> bt));    
 
-};
+CounterInstructionType::add("cror");};
 
 //!Instruction crorc behavior method.
 void ac_behavior( crorc )
@@ -1346,7 +1347,7 @@ void ac_behavior( crorc )
   else
     CR.write(CR.read() & ~(0x80000000 >> bt));    
 
-};
+CounterInstructionType::add("crorc");};
 
 //!Instruction crxor behavior method.
 void ac_behavior( crxor )
@@ -1372,7 +1373,7 @@ void ac_behavior( crxor )
   else
     CR.write(CR.read() & ~(0x80000000 >> bt));    
 
-};
+CounterInstructionType::add("crxor");};
 
 //!Instruction divw behavior method.
 void ac_behavior( divw )
@@ -1381,7 +1382,7 @@ void ac_behavior( divw )
 
   GPR.write(rt,(int)GPR.read(ra)/(int)GPR.read(rb));
 
-};
+CounterInstructionType::add("divw");};
 
 //!Instruction divw_ behavior method.
 void ac_behavior( divw_ )
@@ -1392,7 +1393,7 @@ void ac_behavior( divw_ )
   CR0_update(CR, XER, result);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("divw_");};
 
 //!Instruction divwo behavior method.
 void ac_behavior( divwo )
@@ -1403,7 +1404,7 @@ void ac_behavior( divwo )
   divws_XER_OV_SO_update(XER, result,GPR.read(ra),GPR.read(rb));
   
   GPR.write(rt,result);
-};
+CounterInstructionType::add("divwo");};
 
 //!Instruction divwo_ behavior method.
 void ac_behavior( divwo_ )
@@ -1417,7 +1418,7 @@ void ac_behavior( divwo_ )
   CR0_update(CR, XER, result);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("divwo_");};
 
 //!Instruction divw behavior method.
 void ac_behavior( divwu )
@@ -1426,7 +1427,7 @@ void ac_behavior( divwu )
 
   GPR.write(rt,(unsigned int)GPR.read(ra)/(unsigned int)GPR.read(rb));
 
-};
+CounterInstructionType::add("divwu");};
 
 //!Instruction divwu_ behavior method.
 void ac_behavior( divwu_ )
@@ -1438,7 +1439,7 @@ void ac_behavior( divwu_ )
   CR0_update(CR, XER, result);
   
   GPR.write(rt,result);
-};
+CounterInstructionType::add("divwu_");};
 
 //!Instruction divwou behavior method.
 void ac_behavior( divwou )
@@ -1450,7 +1451,7 @@ void ac_behavior( divwou )
   divwu_XER_OV_SO_update(XER, result,GPR.read(ra),GPR.read(rb));
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("divwou");};
 
 //!Instruction divwou_ behavior method.
 void ac_behavior( divwou_ )
@@ -1464,7 +1465,7 @@ void ac_behavior( divwou_ )
   CR0_update(CR, XER, result);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("divwou_");};
 
 //!Instruction eqv behavior method.
 void ac_behavior( eqv )
@@ -1472,7 +1473,7 @@ void ac_behavior( eqv )
   dbg_printf(" eqv r%d, r%d, r%d\n\n",ra,rs,rb);
 
   GPR.write(ra,~(GPR.read(rs)^GPR.read(rb)));
-};
+CounterInstructionType::add("eqv");};
 
 //!Instruction eqv_ behavior method.
 void ac_behavior( eqv_ )
@@ -1482,7 +1483,7 @@ void ac_behavior( eqv_ )
   GPR.write(ra,~(GPR.read(rs)^GPR.read(rb)));
 
   CR0_update(CR, XER, GPR.read(ra));
-};
+CounterInstructionType::add("eqv_");};
 
 //!Instruction extsb behavior method.
 void ac_behavior( extsb )
@@ -1491,7 +1492,7 @@ void ac_behavior( extsb )
 
   GPR.write(ra,(char)(GPR.read(rs)));
 
-};
+CounterInstructionType::add("extsb");};
 
 //!Instruction extsb_ behavior method.
 void ac_behavior( extsb_ )
@@ -1501,7 +1502,7 @@ void ac_behavior( extsb_ )
   GPR.write(ra,(char)(GPR.read(rs)));
 
   CR0_update(CR, XER, GPR.read(ra));
-};
+CounterInstructionType::add("extsb_");};
 
 //!Instruction extsh behavior method.
 void ac_behavior( extsh )
@@ -1510,7 +1511,7 @@ void ac_behavior( extsh )
 
   GPR.write(ra,(short int)(GPR.read(rs)));
 
-};
+CounterInstructionType::add("extsh");};
 
 //!Instruction extsh_ behavior method.
 void ac_behavior( extsh_ )
@@ -1521,7 +1522,7 @@ void ac_behavior( extsh_ )
 
   CR0_update(CR, XER, GPR.read(ra));
 
-};
+CounterInstructionType::add("extsh_");};
 
 
 //!Instruction lbz behavior method.
@@ -1538,7 +1539,7 @@ void ac_behavior( lbz )
  
   GPR.write(rt,(unsigned int)MEM.read_byte(ea));
   
-};
+CounterInstructionType::add("lbz");};
 
 //!Instruction lbzu behavior method.
 void ac_behavior( lbzu )
@@ -1552,7 +1553,7 @@ void ac_behavior( lbzu )
   GPR.write(ra,ea);
   GPR.write(rt,(unsigned int)MEM.read_byte(ea));
   
-};
+CounterInstructionType::add("lbzu");};
 
 //!Instruction lbzux behavior method.
 void ac_behavior( lbzux )
@@ -1566,7 +1567,7 @@ void ac_behavior( lbzux )
   GPR.write(ra,ea);
   GPR.write(rt,(unsigned int)MEM.read_byte(ea));
   
-};
+CounterInstructionType::add("lbzux");};
 
 //!Instruction lbzx behavior method.
 void ac_behavior( lbzx )
@@ -1582,7 +1583,7 @@ void ac_behavior( lbzx )
 
   GPR.write(rt,(unsigned int)MEM.read_byte(ea));
   
-};
+CounterInstructionType::add("lbzx");};
 
 //!Instruction lha behavior method.
 void ac_behavior( lha )
@@ -1598,7 +1599,7 @@ void ac_behavior( lha )
  
   GPR.write(rt,(short int)MEM.read_half(ea));
   
-};
+CounterInstructionType::add("lha");};
 
 //!Instruction lhau behavior method.
 void ac_behavior( lhau )
@@ -1610,7 +1611,7 @@ void ac_behavior( lhau )
   GPR.write(ra,ea);
   GPR.write(rt,(short int)MEM.read_half(ea));
   
-};
+CounterInstructionType::add("lhau");};
 
 //!Instruction lhaux behavior method.
 void ac_behavior( lhaux )
@@ -1622,7 +1623,7 @@ void ac_behavior( lhaux )
   GPR.write(ra,ea);
   GPR.write(rt,(short int)MEM.read_half(ea));
   
-};
+CounterInstructionType::add("lhaux");};
 
 //!Instruction lhax behavior method.
 void ac_behavior( lhax )
@@ -1638,7 +1639,7 @@ void ac_behavior( lhax )
 
   GPR.write(rt,(short int)MEM.read_half(ea));
   
-};
+CounterInstructionType::add("lhax");};
 
 //!Instruction lhbrx behavior method.
 void ac_behavior( lhbrx )
@@ -1654,7 +1655,7 @@ void ac_behavior( lhbrx )
 
   GPR.write(rt,(((int)(MEM.read_byte(ea+1)) & 0x000000FF)<<8) | ((int)(MEM.read_byte(ea)) & 0x000000FF));
 
-};
+CounterInstructionType::add("lhbrx");};
 
 //!Instruction lhz behavior method.
 void ac_behavior( lhz )
@@ -1670,7 +1671,7 @@ void ac_behavior( lhz )
 
   GPR.write(rt,(unsigned short int)MEM.read_half(ea));
 
-};
+CounterInstructionType::add("lhz");};
 
 //!Instruction lhzu behavior method.
 void ac_behavior( lhzu )
@@ -1682,7 +1683,7 @@ void ac_behavior( lhzu )
   GPR.write(ra,ea);
   GPR.write(rt,(unsigned short int)MEM.read_half(ea));
 
-};
+CounterInstructionType::add("lhzu");};
 
 //!Instruction lhzux behavior method.
 void ac_behavior( lhzux )
@@ -1694,7 +1695,7 @@ void ac_behavior( lhzux )
   GPR.write(ra,ea);
   GPR.write(rt,(unsigned short int)MEM.read_half(ea));
 
-};
+CounterInstructionType::add("lhzux");};
 
 //!Instruction lhzx behavior method.
 void ac_behavior( lhzx )
@@ -1710,7 +1711,7 @@ void ac_behavior( lhzx )
 
   GPR.write(rt,(unsigned short int)MEM.read_half(ea));
   
-};
+CounterInstructionType::add("lhzx");};
 
 //!Instruction lmw behavior method.
 void ac_behavior( lmw )
@@ -1734,7 +1735,7 @@ void ac_behavior( lmw )
     ea=ea+4;
   }
 
-};
+CounterInstructionType::add("lmw");};
 
 //!Instruction lswi behavior method.
 void ac_behavior( lswi )
@@ -1782,7 +1783,7 @@ void ac_behavior( lswi )
     n=n-1;
   }
   
-};
+CounterInstructionType::add("lswi");};
 
 //!Instruction lswx behavior method.
 void ac_behavior( lswx )
@@ -1826,7 +1827,7 @@ void ac_behavior( lswx )
     n=n-1;    
   }
 
-};
+CounterInstructionType::add("lswx");};
 
 
 //!Instruction lwbrx behavior method.
@@ -1846,7 +1847,7 @@ void ac_behavior( lwbrx )
 	    (((unsigned int)MEM.read_byte(ea+1) & 0x000000FF) << 8) | 
 	    ((unsigned int)MEM.read_byte(ea) & 0x000000FF));
 
-};
+CounterInstructionType::add("lwbrx");};
 
 //!Instruction lwz behavior method.
 void ac_behavior( lwz )
@@ -1862,7 +1863,7 @@ void ac_behavior( lwz )
 
   GPR.write(rt,MEM.read(ea));
 
-};
+CounterInstructionType::add("lwz");};
 
 //!Instruction lwzu behavior method.
 void ac_behavior( lwzu )
@@ -1874,7 +1875,7 @@ void ac_behavior( lwzu )
   GPR.write(ra,ea);
   GPR.write(rt,MEM.read(ea));
 
-};
+CounterInstructionType::add("lwzu");};
 
 //!Instruction lwzux behavior method.
 void ac_behavior( lwzux )
@@ -1886,7 +1887,7 @@ void ac_behavior( lwzux )
   GPR.write(ra,ea);
   GPR.write(rt,MEM.read(ea));
 
-};
+CounterInstructionType::add("lwzux");};
 
 //!Instruction lwzx behavior method.
 void ac_behavior( lwzx )
@@ -1902,7 +1903,7 @@ void ac_behavior( lwzx )
 
   GPR.write(rt,MEM.read(ea));
   
-};
+CounterInstructionType::add("lwzx");};
 
 //!Instruction mcrf behavior method.
 void ac_behavior( mcrf )
@@ -1938,7 +1939,7 @@ void ac_behavior( mcrf )
   masc=~masc;
   CR.write((CR.read() & masc)|tmp);
 
-};
+CounterInstructionType::add("mcrf");};
 
 //!Instruction mcrxr behavior method.
 void ac_behavior( mcrxr )
@@ -1966,7 +1967,7 @@ void ac_behavior( mcrxr )
   XER.write(XER.read() & 0xBFFFFFFF); /* Write 0 to bit 1 OV */
   XER.write(XER.read() & 0x7FFFFFFF); /* Write 0 to bit 0 SO */
   XER.write(XER.read() & 0xDFFFFFFF); /* Write 0 to bit 2 CA */
-};
+CounterInstructionType::add("mcrxr");};
 
 //!Instruction mfcr behavior method.
 void ac_behavior( mfcr )
@@ -1974,7 +1975,7 @@ void ac_behavior( mfcr )
   dbg_printf(" mfcr r%d\n\n",rt);
   GPR.write(rt,CR.read());
   
-};
+CounterInstructionType::add("mfcr");};
 
 //!Instruction mfspr behavior method.
 void ac_behavior( mfspr )
@@ -2034,7 +2035,7 @@ void ac_behavior( mfspr )
 
 
   }
-};
+CounterInstructionType::add("mfspr");};
 
 
 //!Instruction mtcrf behavior method.
@@ -2058,7 +2059,7 @@ void ac_behavior( mtcrf ) {
 
   CR.write((GPR.read(rs) & mask) | (CR.read() & ~mask));
 
-};
+CounterInstructionType::add("mtspr");};
 
 
 
@@ -2119,7 +2120,7 @@ void ac_behavior( mtspr )
   }
 
 
-};
+CounterInstructionType::add("mulhw");};
 
 
 //!Instruction mulhw behavior method.
@@ -2137,7 +2138,7 @@ void ac_behavior( mulhw )
 
   GPR.write(rt,high);
   
-};
+CounterInstructionType::add("mulhw_");};
 
 
 //!Instruction mulhw_ behavior method.
@@ -2155,7 +2156,7 @@ void ac_behavior( mulhw_ )
   
   GPR.write(rt,high);
   CR0_update(CR, XER, high); 
-};
+CounterInstructionType::add("mulhwu");};
 
 //!Instruction mulhwu behavior method.
 void ac_behavior( mulhwu )
@@ -2172,7 +2173,7 @@ void ac_behavior( mulhwu )
   
   GPR.write(rt,high);
   
-};
+CounterInstructionType::add("mulhwu_");};
 
 //!Instruction mulhwu_ behavior method.
 void ac_behavior( mulhwu_ )
@@ -2189,7 +2190,7 @@ void ac_behavior( mulhwu_ )
   
   GPR.write(rt,high);
   CR0_update(CR, XER, high); 
-};
+CounterInstructionType::add("mullhw");};
 
 //!Instruction mullhw behavior method.
 void ac_behavior( mullhw )
@@ -2202,7 +2203,7 @@ void ac_behavior( mullhw )
 
   GPR.write(rt,prod);
   
-};
+CounterInstructionType::add("mullhw_");};
 
 //!Instruction mullhw_ behavior method.
 void ac_behavior( mullhw_ )
@@ -2215,7 +2216,7 @@ void ac_behavior( mullhw_ )
   
   GPR.write(rt,prod);
   CR0_update(CR, XER, prod); 
-};
+CounterInstructionType::add("mullhwu");};
 
 //!Instruction mullhwu behavior method.
 void ac_behavior( mullhwu )
@@ -2228,7 +2229,7 @@ void ac_behavior( mullhwu )
 
   GPR.write(rt,prod);
   
-};
+CounterInstructionType::add("mullhwu_");};
 
 //!Instruction mullhwu_ behavior method.
 void ac_behavior( mullhwu_ )
@@ -2241,7 +2242,7 @@ void ac_behavior( mullhwu_ )
   
   GPR.write(rt,prod);
   CR0_update(CR, XER, prod); 
-};
+CounterInstructionType::add("mulli");};
 
 //!Instruction mulli behavior method.
 void ac_behavior( mulli )
@@ -2256,7 +2257,7 @@ void ac_behavior( mulli )
 
   GPR.write(rt,low);
    
-};
+CounterInstructionType::add("mullw");};
 
 //!Instruction mullw behavior method.
 void ac_behavior( mullw )
@@ -2271,7 +2272,7 @@ void ac_behavior( mullw )
 
   GPR.write(rt,low);
 
-};
+CounterInstructionType::add("mullw_");};
 
 //!Instruction mullw_ behavior method.
 void ac_behavior( mullw_ )
@@ -2287,7 +2288,7 @@ void ac_behavior( mullw_ )
   GPR.write(rt,low);
   CR0_update(CR, XER, low);
 
-};
+CounterInstructionType::add("mullwo");};
 
 //!Instruction mullwo behavior method.
 void ac_behavior( mullwo )
@@ -2310,7 +2311,7 @@ void ac_behavior( mullwo )
 
   GPR.write(rt,low);
 
-};
+CounterInstructionType::add("mullwo_");};
 
 //!Instruction mullw behavior method.
 void ac_behavior( mullwo_ )
@@ -2333,7 +2334,7 @@ void ac_behavior( mullwo_ )
     XER.write(XER.read() & 0xBFFFFFFF); /* Write 0 to bit 1 OV */
   
   CR0_update(CR, XER, low);
-};
+CounterInstructionType::add("nand");};
 
 //!Instruction nand behavior method.
 void ac_behavior( nand )
@@ -2341,7 +2342,7 @@ void ac_behavior( nand )
   dbg_printf(" nand r%d, r%d, r%d\n\n",ra,rs,rb);
   GPR.write(ra,~(GPR.read(rs) & GPR.read(rb)));
 
-};
+CounterInstructionType::add("nand_");};
 
 //!Instruction nand_ behavior method.
 void ac_behavior( nand_ )
@@ -2352,7 +2353,7 @@ void ac_behavior( nand_ )
   GPR.write(ra,result);
   CR0_update(CR, XER, result);
 
-};
+CounterInstructionType::add("neg");};
 
 //!Instruction neg behavior method.
 void ac_behavior( neg )
@@ -2360,7 +2361,7 @@ void ac_behavior( neg )
   dbg_printf(" neg r%d, r%d\n\n",rt,ra);
 
   GPR.write(rt,~(GPR.read(ra))+1);
-};
+CounterInstructionType::add("neg_");};
 
 //!Instruction neg_ behavior method.
 void ac_behavior( neg_ )
@@ -2370,7 +2371,7 @@ void ac_behavior( neg_ )
   int result=~(GPR.read(ra))+1;
   GPR.write(rt,result);
   CR0_update(CR, XER, result);
-};
+CounterInstructionType::add("nego");};
 
 //!Instruction nego behavior method.
 void ac_behavior( nego )
@@ -2388,7 +2389,7 @@ void ac_behavior( nego )
     XER.write(XER.read() & 0xBFFFFFFF); /* Write 0 to bit 1 OV */
   
   GPR.write(rt,result);
-};
+CounterInstructionType::add("nego_");};
 
 //!Instruction nego_ behavior method.
 void ac_behavior( nego_ )
@@ -2408,7 +2409,7 @@ void ac_behavior( nego_ )
   GPR.write(rt,result);
   CR0_update(CR, XER, result);
 
-};
+CounterInstructionType::add("nor");};
 
 //!Instruction nor behavior method.
 void ac_behavior( nor )
@@ -2416,7 +2417,7 @@ void ac_behavior( nor )
   dbg_printf(" nor r%d, r%d, r%d\n\n",ra,rs,rb);
   GPR.write(ra,~(GPR.read(rs) | GPR.read(rb)));
 
-};
+CounterInstructionType::add("nor_");};
 
 //!Instruction nor_ behavior method.
 void ac_behavior( nor_ )
@@ -2427,7 +2428,7 @@ void ac_behavior( nor_ )
   GPR.write(ra,result);
   CR0_update(CR, XER, result);
 
-};
+CounterInstructionType::add("ore");};
 
 //!Instruction ore behavior method.
 void ac_behavior( ore )
@@ -2435,7 +2436,7 @@ void ac_behavior( ore )
   dbg_printf(" or r%d, r%d, r%d\n\n",ra,rs,rb);
   GPR.write(ra,GPR.read(rs) | GPR.read(rb));
 
-};
+CounterInstructionType::add("ore_");};
 
 //!Instruction ore_ behavior method.
 void ac_behavior( ore_ )
@@ -2446,7 +2447,7 @@ void ac_behavior( ore_ )
   GPR.write(ra,result);
   CR0_update(CR, XER, result);
 
-};
+CounterInstructionType::add("orc");};
 
 //!Instruction orc behavior method.
 void ac_behavior( orc )
@@ -2454,7 +2455,7 @@ void ac_behavior( orc )
   dbg_printf(" orc r%d, r%d, r%d\n\n",ra,rs,rb);
   GPR.write(ra,GPR.read(rs) | ~GPR.read(rb));
 
-};
+CounterInstructionType::add("orc_");};
 
 //!Instruction orc_ behavior method.
 void ac_behavior( orc_ )
@@ -2465,7 +2466,7 @@ void ac_behavior( orc_ )
   GPR.write(ra,result);
   CR0_update(CR, XER, result);
 
-};
+CounterInstructionType::add("ori");};
 
 //!Instruction ori behavior method.
 void ac_behavior( ori )
@@ -2473,7 +2474,7 @@ void ac_behavior( ori )
   dbg_printf(" ori r%d, r%d, %d\n\n",ra,rs,ui);
 
   GPR.write(ra,GPR.read(rs) | (int)((unsigned short int)ui));
-};
+CounterInstructionType::add("oris");};
 
 //!Instruction oris behavior method.
 void ac_behavior( oris )
@@ -2481,7 +2482,7 @@ void ac_behavior( oris )
   dbg_printf(" oris r%d, r%d, r%d\n\n",ra,rs,ui);
 
   GPR.write(ra,GPR.read(rs) | (((int)((unsigned short int)ui)) << 16));
-};
+CounterInstructionType::add("rlwimi");};
 
 //!Instruction rlwimi behavior method.
 void ac_behavior( rlwimi )
@@ -2493,7 +2494,7 @@ void ac_behavior( rlwimi )
 
   GPR.write(ra,(r & m) | (GPR.read(ra) & ~m));
 
-};
+CounterInstructionType::add("rlwimi_");};
 
 //!Instruction rlwimi_ behavior method.
 void ac_behavior( rlwimi_ )
@@ -2507,7 +2508,7 @@ void ac_behavior( rlwimi_ )
 
   CR0_update(CR, XER, GPR.read(ra));  
 
-};
+CounterInstructionType::add("rlwinm");};
 
 //!Instruction rlwinm behavior method.
 void ac_behavior( rlwinm )
@@ -2519,7 +2520,7 @@ void ac_behavior( rlwinm )
 
   GPR.write(ra,(r & m));
 
-};
+CounterInstructionType::add("rlwinm_");};
 
 //!Instruction rlwinm_ behavior method.
 void ac_behavior( rlwinm_ )
@@ -2533,7 +2534,7 @@ void ac_behavior( rlwinm_ )
 
   CR0_update(CR, XER, GPR.read(ra));  
 
-};
+CounterInstructionType::add("rlwnm");};
 
 //!Instruction rlwnm behavior method.
 void ac_behavior( rlwnm )
@@ -2545,7 +2546,7 @@ void ac_behavior( rlwnm )
 
   GPR.write(ra,(r & m));
 
-};
+CounterInstructionType::add("rlwnm_");};
 
 //!Instruction rlwnm_ behavior method.
 void ac_behavior( rlwnm_ )
@@ -2559,7 +2560,7 @@ void ac_behavior( rlwnm_ )
 
   CR0_update(CR, XER, GPR.read(ra));  
 
-};
+CounterInstructionType::add("sc");};
 
 //!Instruction sc behavior method.
 /* The registers used in this intruction may be defined better */
@@ -2576,7 +2577,7 @@ void ac_behavior( sc )
 
   ac_pc=((EVPR.read() & 0xFFFF0000) | 0x00000C00);
 
-};
+CounterInstructionType::add("slw");};
 
 //!Instruction slw behavior method.
 void ac_behavior( slw )
@@ -2594,7 +2595,7 @@ void ac_behavior( slw )
   
   GPR.write(ra,r & m);
 
-};
+CounterInstructionType::add("slw_");};
 
 //!Instruction slw_ behavior method.
 void ac_behavior( slw_ )
@@ -2615,7 +2616,7 @@ void ac_behavior( slw_ )
 
   CR0_update(CR, XER, result);
 
-};
+CounterInstructionType::add("sraw");};
 
 //!Instruction sraw behavior method.
 void ac_behavior( sraw )
@@ -2647,7 +2648,7 @@ void ac_behavior( sraw )
   else
     XER.write(XER.read() & 0xDFFFFFFF); /* Write 0 to bit 2 CA */
   
-};
+CounterInstructionType::add("sraw_");};
 
 //!Instruction sraw_ behavior method.
 void ac_behavior( sraw_ )
@@ -2682,7 +2683,7 @@ void ac_behavior( sraw_ )
   /* Update CR register */
   CR0_update(CR, XER, result);
 
-};
+CounterInstructionType::add("srawi");};
 
 //!Instruction srawi behavior method.
 void ac_behavior( srawi )
@@ -2707,7 +2708,7 @@ void ac_behavior( srawi )
   else
     XER.write(XER.read() & 0xDFFFFFFF); /* Write 0 to bit 2 CA */
   
-};
+CounterInstructionType::add("srawi_");};
 
 //!Instruction srawi_ behavior method.
 void ac_behavior( srawi_ )
@@ -2733,7 +2734,7 @@ void ac_behavior( srawi_ )
 
   /* Update CR register */
   CR0_update(CR, XER, result);
-};
+CounterInstructionType::add("srw");};
 
 //!Instruction srw behavior method.
 void ac_behavior( srw )
@@ -2751,7 +2752,7 @@ void ac_behavior( srw )
   
   GPR.write(ra,r & m);
 
-};
+CounterInstructionType::add("srw_");};
 
 //!Instruction srw_ behavior method.
 void ac_behavior( srw_ )
@@ -2773,7 +2774,7 @@ void ac_behavior( srw_ )
 
   CR0_update(CR, XER, result);
 
-};
+CounterInstructionType::add("stb");};
 
 //!Instruction stb behavior method.
 void ac_behavior( stb )
@@ -2789,7 +2790,7 @@ void ac_behavior( stb )
  
   MEM.write_byte(ea,(unsigned char)GPR.read(rs));
     
-};
+CounterInstructionType::add("stbu");};
 
 //!Instruction stbu behavior method.
 void ac_behavior( stbu )
@@ -2801,7 +2802,7 @@ void ac_behavior( stbu )
   MEM.write_byte(ea,(unsigned char)GPR.read(rs));
   GPR.write(ra,ea);
     
-};
+CounterInstructionType::add("stbux");};
 
 //!Instruction stbux behavior method.
 void ac_behavior( stbux )
@@ -2813,7 +2814,7 @@ void ac_behavior( stbux )
   MEM.write_byte(ea,(unsigned char)GPR.read(rs));
   GPR.write(ra,ea);
     
-};
+CounterInstructionType::add("stbx");};
 
 //!Instruction stbx behavior method.
 void ac_behavior( stbx )
@@ -2829,7 +2830,7 @@ void ac_behavior( stbx )
   
   MEM.write_byte(ea,(unsigned char)GPR.read(rs));
    
-};
+CounterInstructionType::add("sth");};
 
 //!Instruction sth behavior method.
 void ac_behavior( sth )
@@ -2845,7 +2846,7 @@ void ac_behavior( sth )
  
   MEM.write_half(ea,(unsigned short int)GPR.read(rs));
     
-};
+CounterInstructionType::add("sthbrx");};
 
 //!Instruction sthbrx behavior method.
 void ac_behavior( sthbrx )
@@ -2875,7 +2876,7 @@ void ac_behavior( sthu )
   MEM.write_half(ea,(unsigned short int)GPR.read(rs));
   GPR.write(ra,ea);
     
-};
+CounterInstructionType::add("sthu");};
 
 //!Instruction sthux behavior method.
 void ac_behavior( sthux )
@@ -2887,7 +2888,7 @@ void ac_behavior( sthux )
   MEM.write_half(ea,(unsigned short int)GPR.read(rs));
   GPR.write(ra,ea);
     
-};
+CounterInstructionType::add("sthux");};
 
 //!Instruction sthx behavior method.
 void ac_behavior( sthx )
@@ -2903,7 +2904,7 @@ void ac_behavior( sthx )
   
   MEM.write_half(ea,(unsigned short int)GPR.read(rs));
     
-};
+CounterInstructionType::add("sthx");};
 
 //!Instruction stmw behavior method.
 void ac_behavior( stmw )
@@ -2926,7 +2927,7 @@ void ac_behavior( stmw )
     ea+=4;
   }
     
-};
+CounterInstructionType::add("stmw");};
   
 //!Instruction stswi behavior method.
 void ac_behavior( stswi )
@@ -2965,7 +2966,7 @@ void ac_behavior( stswi )
     n=n-1;
   }
   
-};
+CounterInstructionType::add("stswi");};
 
 //!Instruction stswx behavior method.
 void ac_behavior( stswx )
@@ -3001,7 +3002,7 @@ void ac_behavior( stswx )
     n=n-1;
   }
   
-};
+CounterInstructionType::add("stswx");};
 
 //!Instruction stw behavior method.
 void ac_behavior( stw )
@@ -3017,7 +3018,7 @@ void ac_behavior( stw )
 
   MEM.write(ea,(unsigned int)GPR.read(rs));
     
-};
+CounterInstructionType::add("stw");};
 
 //!Instruction stwbrx behavior method.
 void ac_behavior( stwbrx )
@@ -3036,7 +3037,7 @@ void ac_behavior( stwbrx )
 		((GPR.read(rs) & 0x00FF0000) << 8 ) |
 		(GPR.read(rs) & 0xFF000000)));
 
-};
+CounterInstructionType::add("stwbrx");};
 
 
 //!Instruction stwu behavior method.
@@ -3049,7 +3050,7 @@ void ac_behavior( stwu )
   MEM.write(ea,(unsigned int)GPR.read(rs));
   GPR.write(ra,ea);
     
-};
+CounterInstructionType::add("stwu");};
 
 //!Instruction stwux behavior method.
 void ac_behavior( stwux )
@@ -3061,7 +3062,7 @@ void ac_behavior( stwux )
   MEM.write(ea,GPR.read(rs));
   GPR.write(ra,ea);
     
-};
+CounterInstructionType::add("stwux");};
 
 //!Instruction stwx behavior method.
 void ac_behavior( stwx )
@@ -3077,7 +3078,7 @@ void ac_behavior( stwx )
   
   MEM.write(ea,(unsigned int)GPR.read(rs));
    
-};
+CounterInstructionType::add("stwx");};
 
 
 
@@ -3092,7 +3093,7 @@ void ac_behavior( subf )
 
   GPR.write(rt,~GPR.read(ra) + GPR.read(rb) + 1);
 
-};
+CounterInstructionType::add("subf");};
 
 //!Instruction subf_ behavior method.
 void ac_behavior( subf_ )
@@ -3103,7 +3104,7 @@ void ac_behavior( subf_ )
   GPR.write(rt,result);
   CR0_update(CR, XER, result);
 
-};
+CounterInstructionType::add("subf_");};
 
 //!Instruction subfo behavior method.
 void ac_behavior( subfo )
@@ -3113,7 +3114,7 @@ void ac_behavior( subfo )
 
   add_XER_OV_SO_update(XER, result,~GPR.read(ra),GPR.read(rb),1);
   GPR.write(rt,result);
-};
+CounterInstructionType::add("subfo");};
 
 //!Instruction subfo_ behavior method.
 void ac_behavior( subfo_ )
@@ -3126,7 +3127,7 @@ void ac_behavior( subfo_ )
   CR0_update(CR, XER, result);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("subfo_");};
 
 //!Instruction subfc behavior method.
 void ac_behavior( subfc )
@@ -3137,7 +3138,7 @@ void ac_behavior( subfc )
   add_XER_CA_update(XER, result,~GPR.read(ra),GPR.read(rb),1);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("subfc");};
 
 //!Instruction subfc_ behavior method.
 void ac_behavior( subfc_ )
@@ -3150,7 +3151,7 @@ void ac_behavior( subfc_ )
   CR0_update(CR, XER, result);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("subfc_");};
 
 //!Instruction subfco behavior method.
 void ac_behavior( subfco )
@@ -3163,7 +3164,7 @@ void ac_behavior( subfco )
   add_XER_OV_SO_update(XER, result,~GPR.read(ra),GPR.read(rb),1);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("subfco");};
 
 //!Instruction subfco_ behavior method.
 void ac_behavior( subfco_ )
@@ -3178,7 +3179,7 @@ void ac_behavior( subfco_ )
   CR0_update(CR, XER, result);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("subfco_");};
 
 //!Instruction subfe behavior method.
 void ac_behavior( subfe )
@@ -3190,7 +3191,7 @@ void ac_behavior( subfe )
   add_XER_CA_update(XER, result,~GPR.read(ra),GPR.read(rb),XER_CA_read(XER));
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("subfe");};
 
 //!Instruction subfe_ behavior method.
 void ac_behavior( subfe_ )
@@ -3204,7 +3205,7 @@ void ac_behavior( subfe_ )
   CR0_update(CR, XER, result);
   
   GPR.write(rt,result);
-};
+CounterInstructionType::add("subfe_");};
 
 //!Instruction subfeo behavior method.
 void ac_behavior( subfeo )
@@ -3218,7 +3219,7 @@ void ac_behavior( subfeo )
   add_XER_OV_SO_update(XER, result,~GPR.read(ra),GPR.read(rb),XER_CA_read(XER));
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("subfeo");};
 
 //!Instruction subfeo_ behavior method.
 void ac_behavior( subfeo_ )
@@ -3234,7 +3235,7 @@ void ac_behavior( subfeo_ )
   CR0_update(CR, XER, result);
   
   GPR.write(rt,result);
-};
+CounterInstructionType::add("subfeo_");};
 
 //!Instruction subfic behavior method.
 void ac_behavior( subfic )
@@ -3246,7 +3247,7 @@ void ac_behavior( subfic )
   add_XER_CA_update(XER, result,~GPR.read(ra),ime32,1);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("subfic");};
 
 //!Instruction subfme behavior method.
 void ac_behavior( subfme )
@@ -3257,7 +3258,7 @@ void ac_behavior( subfme )
   add_XER_CA_update(XER, result,~GPR.read(ra),XER_CA_read(XER),-1);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("subfme");};
 
 //!Instruction subfme_ behavior method.
 void ac_behavior( subfme_ )
@@ -3270,7 +3271,7 @@ void ac_behavior( subfme_ )
   CR0_update(CR, XER, result);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("subfme_");};
 
 //!Instruction subfmeo behavior method.
 void ac_behavior( subfmeo )
@@ -3283,7 +3284,7 @@ void ac_behavior( subfmeo )
   add_XER_OV_SO_update(XER, result,~GPR.read(ra),XER_CA_read(XER),-1);
  
   GPR.write(rt,result);
-};
+CounterInstructionType::add("subfmeo");};
 
 //!Instruction subfmeo_ behavior method.
 void ac_behavior( subfmeo_ )
@@ -3298,7 +3299,7 @@ void ac_behavior( subfmeo_ )
   CR0_update(CR, XER, result);
 
   GPR.write(rt,result);  
-};
+CounterInstructionType::add("subfmeo_");};
 
 //!Instruction subfze behavior method.
 void ac_behavior( subfze )
@@ -3309,7 +3310,7 @@ void ac_behavior( subfze )
   add_XER_CA_update(XER, result,~GPR.read(ra),XER_CA_read(XER),0);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("subfze");};
 
 //!Instruction subfze_ behavior method.
 void ac_behavior( subfze_ )
@@ -3322,7 +3323,7 @@ void ac_behavior( subfze_ )
   CR0_update(CR, XER, result);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("subfze_");};
 
 //!Instruction subfzeo behavior method.
 void ac_behavior( subfzeo )
@@ -3335,7 +3336,7 @@ void ac_behavior( subfzeo )
   add_XER_OV_SO_update(XER, result,~GPR.read(ra),XER_CA_read(XER),0);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("subfzeo");};
 
 //!Instruction subfzeo_ behavior method.
 void ac_behavior( subfzeo_ )
@@ -3350,7 +3351,7 @@ void ac_behavior( subfzeo_ )
   CR0_update(CR, XER, result);
 
   GPR.write(rt,result);
-};
+CounterInstructionType::add("subfzeo_");};
 
 //!Instruction xor behavior method.
 void ac_behavior( xxor )
@@ -3358,7 +3359,7 @@ void ac_behavior( xxor )
   dbg_printf(" xor r%d, r%d, r%d\n\n",ra,rs,rb);
   GPR.write(ra,GPR.read(rs) ^ GPR.read(rb));
 
-};
+CounterInstructionType::add("xxor");};
 
 //!Instruction xor_ behavior method.
 void ac_behavior( xxor_ )
@@ -3369,7 +3370,7 @@ void ac_behavior( xxor_ )
   CR0_update(CR, XER, result);
 
   GPR.write(ra,result);
-};
+CounterInstructionType::add("xxor_");};
 
 //!Instruction xori behavior method.
 void ac_behavior( xori )
@@ -3377,7 +3378,7 @@ void ac_behavior( xori )
   dbg_printf(" xori r%d, r%d, %d\n\n",ra,rs,ui);
 
   GPR.write(ra,GPR.read(rs) ^ (int)((unsigned short int)ui));
-};
+CounterInstructionType::add("xori");};
 
 //!Instruction xoris behavior method.
 void ac_behavior( xoris )
@@ -3385,4 +3386,5 @@ void ac_behavior( xoris )
   dbg_printf(" xoris r%d, r%d, %d\n\n",ra,rs,ui);
 
   GPR.write(ra,GPR.read(rs) ^ (((int)((unsigned short int)ui)) << 16));
-};
+CounterInstructionType::add("xoris");};
+

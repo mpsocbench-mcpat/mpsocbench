@@ -36,6 +36,8 @@
 #include "ac_debug_model.H"
 #include "ansi-colors.h" 
 
+#include  "../../counter_instruction_type.h"
+
 // Namespace for sparc types.
 using namespace sparc_parms;
 
@@ -158,14 +160,14 @@ void ac_behavior( call )
   dbg_printf("call 0x%x\n", ac_pc+(disp30<<2));
   writeReg(15, ac_pc); //saves ac_pc in %o7(or %r15)
   update_pc(1,1,1,0, ac_pc+(disp30<<2), ac_pc, npc);
-};
+CounterInstructionType::add("call");};
 
 //!Instruction nop behavior method.
 void ac_behavior( nop )
 {
   dbg_printf("nop\n");
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("nop");};
 
 //!Instruction sethi behavior method.
 void ac_behavior( sethi )
@@ -173,119 +175,119 @@ void ac_behavior( sethi )
   dbg_printf("sethi 0x%x,r%d\n", imm22, rd);
   writeReg(rd, (imm22 << 10));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("sethi");};
 
 ///!Instruction ba behavior method.
 void ac_behavior( ba )
 {
   dbg_printf("ba 0x%x\n", ac_pc+(disp22<<2));
   update_pc(1,1,1,an, ac_pc+(disp22<<2), ac_pc, npc);
-};
+CounterInstructionType::add("ba");};
 
 ///!Instruction bn behavior method.
 void ac_behavior( bn )
 {
   dbg_printf("bn 0x%x\n", ac_pc+(disp22<<2));
   update_pc(1,0,0,an,0, ac_pc, npc);
-};
+CounterInstructionType::add("bn");};
 
 ///!Instruction bne behavior method.
 void ac_behavior( bne )
 {
   dbg_printf("bne 0x%x\n", ac_pc+(disp22<<2));
   update_pc(1, !PSR_icc_z, 0, an, ac_pc+(disp22<<2), ac_pc, npc);
-};
+CounterInstructionType::add("bne");};
 
 ///!Instruction be behavior method.
 void ac_behavior( be )
 {
   dbg_printf("be 0x%x\n", ac_pc+(disp22<<2));
   update_pc(1, PSR_icc_z, 0, an, ac_pc+(disp22<<2), ac_pc, npc);
-};
+CounterInstructionType::add("be");};
 
 ///!Instruction bg behavior method.
 void ac_behavior( bg )
 {
   dbg_printf("bg 0x%x\n", ac_pc+(disp22<<2));
   update_pc(1, !(PSR_icc_z ||(PSR_icc_n ^PSR_icc_v)), 0, an, ac_pc+(disp22<<2), ac_pc, npc);
-};
+CounterInstructionType::add("bg");};
 
 ///!Instruction ble behavior method.
 void ac_behavior( ble )
 {
   dbg_printf("ble 0x%x\n", ac_pc+(disp22<<2));
   update_pc(1, PSR_icc_z ||(PSR_icc_n ^PSR_icc_v), 0, an, ac_pc+(disp22<<2), ac_pc, npc);
-};
+CounterInstructionType::add("ble");};
 
 ///!Instruction bge behavior method.
 void ac_behavior( bge )
 {
   dbg_printf("bge 0x%x\n", ac_pc+(disp22<<2));
   update_pc(1, !(PSR_icc_n ^PSR_icc_v), 0, an, ac_pc+(disp22<<2), ac_pc, npc);
-};
+CounterInstructionType::add("bge");};
 
 ///!Instruction bl behavior method.
 void ac_behavior( bl )
 {
   dbg_printf("bl 0x%x\n", ac_pc+(disp22<<2));
   update_pc(1, PSR_icc_n ^PSR_icc_v, 0, an, ac_pc+(disp22<<2), ac_pc, npc);
-};
+CounterInstructionType::add("bl");};
 
 ///!Instruction bgu behavior method.
 void ac_behavior( bgu )
 {
   dbg_printf("bgu 0x%x\n", ac_pc+(disp22<<2));
   update_pc(1, !(PSR_icc_c ||PSR_icc_z), 0, an, ac_pc+(disp22<<2), ac_pc, npc);
-};
+CounterInstructionType::add("bgu");};
 
 ///!Instruction bleu behavior method.
 void ac_behavior( bleu )
 {
   dbg_printf("bleu 0x%x\n", ac_pc+(disp22<<2));
   update_pc(1, PSR_icc_c ||PSR_icc_z, 0, an, ac_pc+(disp22<<2), ac_pc, npc);
-};
+CounterInstructionType::add("bleu");};
 
 ///!Instruction bcc behavior method.
 void ac_behavior( bcc )
 {
   dbg_printf("bcc 0x%x\n", ac_pc+(disp22<<2));
   update_pc(1, !PSR_icc_c, 0, an, ac_pc+(disp22<<2), ac_pc, npc);
-};
+CounterInstructionType::add("bcc");};
 
 ///!Instruction bcs behavior method.
 void ac_behavior( bcs )
 {
   dbg_printf("bcs 0x%x\n", ac_pc+(disp22<<2));
   update_pc(1, PSR_icc_c, 0, an, ac_pc+(disp22<<2), ac_pc, npc);
-};
+CounterInstructionType::add("bcs");};
 
 ///!Instruction bpos behavior method.
 void ac_behavior( bpos )
 {
   dbg_printf("bpos 0x%x\n", ac_pc+(disp22<<2));
   update_pc(1, !PSR_icc_n, 0, an, ac_pc+(disp22<<2), ac_pc, npc);
-};
+CounterInstructionType::add("bpos");};
 
 ///!Instruction bneg behavior method.
 void ac_behavior( bneg )
 {
   dbg_printf("bneg 0x%x\n", ac_pc+(disp22<<2));
   update_pc(1, PSR_icc_n, 0, an, ac_pc+(disp22<<2), ac_pc, npc);
-};
+CounterInstructionType::add("bneg");};
 
 ///!Instruction bvc behavior method.
 void ac_behavior( bvc )
 {
   dbg_printf("bvc 0x%x\n", ac_pc+(disp22<<2));
   update_pc(1, !PSR_icc_v, 0, an, ac_pc+(disp22<<2), ac_pc, npc);
-};
+CounterInstructionType::add("bvc");};
 
 ///!Instruction bvs behavior method.
 void ac_behavior( bvs )
 {
   dbg_printf("bvs 0x%x\n", ac_pc+(disp22<<2));
   update_pc(1, PSR_icc_v, 0, an, ac_pc+(disp22<<2), ac_pc, npc);
-};
+CounterInstructionType::add("bvs");};
 
 //!Instruction ldsb_reg behavior method.
 void ac_behavior( ldsb_reg )
@@ -294,7 +296,7 @@ void ac_behavior( ldsb_reg )
   writeReg(rd, (int)(char) MEM.read_byte(readReg(rs1) + readReg(rs2)));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("ldsb_reg");};
 
 //!Instruction ldsh_reg behavior method.
 void ac_behavior( ldsh_reg )
@@ -303,7 +305,7 @@ void ac_behavior( ldsh_reg )
   writeReg(rd, (int)(short) MEM.read_half(readReg(rs1) + readReg(rs2)));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("ldsh_reg");};
 
 //!Instruction ldub_reg behavior method.
 void ac_behavior( ldub_reg )
@@ -312,7 +314,7 @@ void ac_behavior( ldub_reg )
   writeReg(rd, MEM.read_byte(readReg(rs1) + readReg(rs2)));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("ldub_reg");};
 
 //!Instruction lduh_reg behavior method.
 void ac_behavior( lduh_reg )
@@ -321,7 +323,7 @@ void ac_behavior( lduh_reg )
   writeReg(rd, MEM.read_half(readReg(rs1) + readReg(rs2)));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("lduh_reg");};
 
 //!Instruction ld_reg behavior method.
 void ac_behavior( ld_reg )
@@ -330,7 +332,7 @@ void ac_behavior( ld_reg )
   writeReg(rd, MEM.read(readReg(rs1) + readReg(rs2)));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("ld_reg");};
 
 //!Instruction ldd_reg behavior method.
 void ac_behavior( ldd_reg )
@@ -342,7 +344,7 @@ void ac_behavior( ldd_reg )
   dbg_printf("Result = 0x%x\n", readReg(rd));
   dbg_printf("Result = 0x%x\n", readReg(rd+1));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("ldd_reg");};
 
 //!Instruction stb_reg behavior method.
 void ac_behavior( stb_reg )
@@ -351,7 +353,7 @@ void ac_behavior( stb_reg )
   MEM.write_byte(readReg(rs1) + readReg(rs2), (char) readReg(rd));
   dbg_printf("Result = 0x%x\n", (char) readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("stb_reg");};
 
 //!Instruction sth_reg behavior method.
 void ac_behavior( sth_reg )
@@ -360,7 +362,7 @@ void ac_behavior( sth_reg )
   MEM.write_half(readReg(rs1) + readReg(rs2), (short) readReg(rd));
   dbg_printf("Result = 0x%x\n", (short) readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("sth_reg");};
 
 //!Instruction st_reg behavior method.
 void ac_behavior( st_reg )
@@ -369,7 +371,7 @@ void ac_behavior( st_reg )
   MEM.write(readReg(rs1) + readReg(rs2), readReg(rd));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("st_reg");};
 
 //!Instruction std_reg behavior method.
 void ac_behavior( std_reg )
@@ -380,7 +382,7 @@ void ac_behavior( std_reg )
   dbg_printf("Result = 0x%x\n", readReg(rd));
   dbg_printf("Result = 0x%x\n", readReg(rd+1));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("std_reg");};
 
 //!Instruction ldstub_reg behavior method.
 void ac_behavior( ldstub_reg )
@@ -389,7 +391,7 @@ void ac_behavior( ldstub_reg )
   writeReg(rd, MEM.read_byte(readReg(rs1) + readReg(rs2)));
   MEM.write_byte(readReg(rs1) + readReg(rs2), 0xFF);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("ldstub_reg");};
 
 ///!Instruction swap_reg behavior method.
 void ac_behavior( swap_reg )
@@ -399,7 +401,7 @@ void ac_behavior( swap_reg )
   MEM.write(readReg(rs1) + readReg(rs2), readReg(rd));
   writeReg(rd, swap_temp);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("swap_reg");};
 
 ///!Instruction sll_reg behavior method.
 void ac_behavior( sll_reg )
@@ -408,7 +410,7 @@ void ac_behavior( sll_reg )
   writeReg(rd, readReg(rs1) << readReg(rs2));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("sll_reg");};
 
 ///!Instruction srl_reg behavior method.
 void ac_behavior( srl_reg )
@@ -417,7 +419,7 @@ void ac_behavior( srl_reg )
   writeReg(rd, ((unsigned) readReg(rs1)) >> ((unsigned) readReg(rs2)));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("srl_reg");};
 
 ///!Instruction sra_reg behavior method.
 void ac_behavior( sra_reg )
@@ -426,7 +428,7 @@ void ac_behavior( sra_reg )
   writeReg(rd, ((int) readReg(rs1)) >> ((int) readReg(rs2)));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("sra_reg");};
 
 ///!Instruction add_reg behavior method.
 void ac_behavior( add_reg )
@@ -435,7 +437,7 @@ void ac_behavior( add_reg )
   writeReg(rd, readReg(rs1) + readReg(rs2));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("add_reg");};
 
 ///!Instruction addcc_reg behavior method.
 void ac_behavior( addcc_reg )
@@ -453,7 +455,7 @@ void ac_behavior( addcc_reg )
   writeReg(rd, dest);
   dbg_printf("Result = 0x%x\n", dest);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("addcc_reg");};
 
 ///!Instruction addx_reg behavior method.
 void ac_behavior( addx_reg )
@@ -462,7 +464,7 @@ void ac_behavior( addx_reg )
   writeReg(rd, readReg(rs1) + readReg(rs2) + PSR_icc_c);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("addx_reg");};
 
 //!Instruction addxcc_reg behavior method.
 void ac_behavior( addxcc_reg )
@@ -480,7 +482,7 @@ void ac_behavior( addxcc_reg )
   writeReg(rd, dest);
   dbg_printf("Result = 0x%x\n", dest);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("addxcc_reg");};
 
 //!Instruction sub_reg behavior method.
 void ac_behavior( sub_reg )
@@ -489,7 +491,7 @@ void ac_behavior( sub_reg )
   writeReg(rd, (readReg(rs1) - readReg(rs2)));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("sub_reg");};
 
 //!Instruction subcc_reg behavior method.
 void ac_behavior( subcc_reg )
@@ -507,7 +509,7 @@ void ac_behavior( subcc_reg )
   writeReg(rd, dest);
   dbg_printf("Result = 0x%x\n", dest);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("subcc_reg");};
 
 ///!Instruction subx_reg behavior method.
 void ac_behavior( subx_reg )
@@ -516,7 +518,7 @@ void ac_behavior( subx_reg )
   writeReg(rd, readReg(rs1) - readReg(rs2) - PSR_icc_c);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("subx_reg");};
 
 ///!Instruction subxcc_reg behavior method.
 void ac_behavior( subxcc_reg )
@@ -534,7 +536,7 @@ void ac_behavior( subxcc_reg )
   writeReg(rd, dest);
   dbg_printf("Result = 0x%x\n", dest);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("subxcc_reg");};
 
 //!Instruction and_reg behavior method.
 void ac_behavior( and_reg )
@@ -543,7 +545,7 @@ void ac_behavior( and_reg )
   writeReg(rd, readReg(rs1) & readReg(rs2));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("and_reg");};
 
 //!Instruction andcc_reg behavior method.
 void ac_behavior( andcc_reg )
@@ -559,7 +561,7 @@ void ac_behavior( andcc_reg )
   writeReg(rd, dest);
   dbg_printf("Result = 0x%x\n", dest);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("andcc_reg");};
 
 //!Instruction andn_reg behavior method.
 void ac_behavior( andn_reg )
@@ -568,7 +570,7 @@ void ac_behavior( andn_reg )
   writeReg(rd, readReg(rs1) & ~readReg(rs2));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("andn_reg");};
 
 //!Instruction andncc_reg behavior method.
 void ac_behavior( andncc_reg )
@@ -584,7 +586,7 @@ void ac_behavior( andncc_reg )
   writeReg(rd, dest);
   dbg_printf("Result = 0x%x\n", dest);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("andncc_reg");};
 
 //!Instruction or_reg behavior method.
 void ac_behavior( or_reg )
@@ -593,7 +595,7 @@ void ac_behavior( or_reg )
   writeReg(rd, readReg(rs1) | readReg(rs2));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("or_reg");};
 
 //!Instruction orcc_reg behavior method.
 void ac_behavior( orcc_reg )
@@ -609,7 +611,7 @@ void ac_behavior( orcc_reg )
   writeReg(rd, dest);
   dbg_printf("Result = 0x%x\n", dest);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("orcc_reg");};
 
 //!Instruction orn_reg behavior method.
 void ac_behavior( orn_reg )
@@ -618,7 +620,7 @@ void ac_behavior( orn_reg )
   writeReg(rd, readReg(rs1) | ~readReg(rs2));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("orn_reg");};
 
 //!Instruction orncc_reg behavior method.
 void ac_behavior( orncc_reg )
@@ -634,7 +636,7 @@ void ac_behavior( orncc_reg )
   writeReg(rd, dest);
   dbg_printf("Result = 0x%x\n", dest);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("orncc_reg");};
 
 //!Instruction xor_reg behavior method.
 void ac_behavior( xor_reg )
@@ -643,7 +645,7 @@ void ac_behavior( xor_reg )
   writeReg(rd, readReg(rs1) ^ readReg(rs2));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("xor_reg");};
 
 ///!Instruction xorcc_reg behavior method.
 void ac_behavior( xorcc_reg )
@@ -659,7 +661,7 @@ void ac_behavior( xorcc_reg )
   writeReg(rd, dest);
   dbg_printf("Result = 0x%x\n", dest);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("xorcc_reg");};
 
 //!Instruction xnor_reg behavior method.
 void ac_behavior( xnor_reg )
@@ -668,7 +670,7 @@ void ac_behavior( xnor_reg )
   writeReg(rd, ~(readReg(rs1) ^ readReg(rs2)));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("xnor_reg");};
 
 ///!Instruction xnorcc_reg behavior method.
 void ac_behavior( xnorcc_reg )
@@ -684,7 +686,7 @@ void ac_behavior( xnorcc_reg )
   writeReg(rd, dest);
   dbg_printf("Result = 0x%x\n", dest);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("xnorcc_reg");};
 
 //!Instruction save_reg behavior method.
 void ac_behavior( save_reg )
@@ -715,7 +717,7 @@ void ac_behavior( save_reg )
   dbg_printf(C_INVERSE "CWP: %d" C_RESET LF, CWP>>4);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("save_reg");};
 
 //!Instruction restore_reg behavior method.
 void ac_behavior( restore_reg )
@@ -746,7 +748,7 @@ void ac_behavior( restore_reg )
   dbg_printf(C_INVERSE "CWP: %d" C_RESET LF, CWP>>4);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("restore_reg");};
 
 ///!Instruction umul_reg behavior method.
 void ac_behavior( umul_reg )
@@ -757,7 +759,7 @@ void ac_behavior( umul_reg )
   Y.write( (unsigned int) (tmp >> 32));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("umul_reg");};
 
 ///!Instruction smul_reg behavior method.
 void ac_behavior( smul_reg )
@@ -768,7 +770,7 @@ void ac_behavior( smul_reg )
   Y.write( (int) (tmp >> 32));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("smul_reg");};
 
 ///!Instruction umulcc_reg behavior method.
 void ac_behavior( umulcc_reg )
@@ -785,7 +787,7 @@ void ac_behavior( umulcc_reg )
   Y.write( (unsigned int) (tmp >> 32));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("umulcc_reg");};
 
 ///!Instruction smulcc_reg behavior method.
 void ac_behavior( smulcc_reg )
@@ -802,7 +804,7 @@ void ac_behavior( smulcc_reg )
   Y.write( (int) (tmp >> 32));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("smulcc_reg");};
 
 ///!Instruction udiv_reg behavior method.
 void ac_behavior( udiv_reg )
@@ -818,7 +820,7 @@ void ac_behavior( udiv_reg )
   writeReg(rd, result);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("udiv_reg");};
 
 ///!Instruction udivcc_reg behavior method.
 void ac_behavior( udivcc_reg )
@@ -840,7 +842,7 @@ void ac_behavior( udivcc_reg )
   writeReg(rd, result);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("udivcc_reg");};
 
 ///!Instruction sdiv_reg behavior method.
 void ac_behavior( sdiv_reg )
@@ -860,7 +862,7 @@ void ac_behavior( sdiv_reg )
   writeReg(rd, result);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("sdiv_reg");};
 
 //!Instruction sdivcc_reg behavior method.
 void ac_behavior( sdivcc_reg )
@@ -886,7 +888,7 @@ void ac_behavior( sdivcc_reg )
   writeReg(rd, result);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("sdivcc_reg");};
 
 ///!Instruction jmpl_reg behavior method.
 void ac_behavior( jmpl_reg )
@@ -895,7 +897,7 @@ void ac_behavior( jmpl_reg )
   writeReg(rd, ac_pc);
   //TODO: ugly: create a way to jump from a register without mapping
   update_pc(1,1,1,0, readReg(rs1) + readReg(rs2), ac_pc, npc);
-};
+CounterInstructionType::add("jmpl_reg");};
 
 ///!Instruction wry_reg behavior method.
 void ac_behavior( wry_reg )
@@ -903,7 +905,7 @@ void ac_behavior( wry_reg )
   dbg_printf("wry_reg r%d,r%d,r%d\n", rs1, rs2, rd);
   Y.write( readReg(rs1) ^ readReg(rs2));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("wry_reg");};
 
 ///!Instruction ldsb_imm behavior method.
 void ac_behavior( ldsb_imm )
@@ -912,7 +914,7 @@ void ac_behavior( ldsb_imm )
   writeReg(rd, (int)(char) MEM.read_byte(readReg(rs1) + simm13));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("ldsb_imm");};
 
 ///!Instruction ldsh_imm behavior method.
 void ac_behavior( ldsh_imm )
@@ -921,7 +923,7 @@ void ac_behavior( ldsh_imm )
   writeReg(rd, (int)(short) MEM.read_half(readReg(rs1) + simm13));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("ldsh_imm");};
 
 ///!Instruction ldub_imm behavior method.
 void ac_behavior( ldub_imm )
@@ -930,7 +932,7 @@ void ac_behavior( ldub_imm )
   writeReg(rd, MEM.read_byte(readReg(rs1) + simm13));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("ldub_imm");};
 
 ///!Instruction lduh_imm behavior method.
 void ac_behavior( lduh_imm )
@@ -939,7 +941,7 @@ void ac_behavior( lduh_imm )
   writeReg(rd, MEM.read_half(readReg(rs1) + simm13));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("lduh_imm");};
 
 ///!Instruction ld_imm behavior method.
 void ac_behavior( ld_imm )
@@ -948,7 +950,7 @@ void ac_behavior( ld_imm )
   writeReg(rd, MEM.read(readReg(rs1) + simm13));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("ld_imm");};
 
 ///!Instruction ldd_imm behavior method.
 void ac_behavior( ldd_imm )
@@ -960,7 +962,7 @@ void ac_behavior( ldd_imm )
   dbg_printf("Result = 0x%x\n", readReg(rd));
   dbg_printf("Result = 0x%x\n", readReg(rd+1));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("ldd_imm");};
 
 ///!Instruction and_imm behavior method.
 void ac_behavior( and_imm )
@@ -969,7 +971,7 @@ void ac_behavior( and_imm )
   writeReg(rd, readReg(rs1) & simm13);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("and_imm");};
 
 ///!Instruction andcc_imm behavior method.
 void ac_behavior( andcc_imm )
@@ -985,7 +987,7 @@ void ac_behavior( andcc_imm )
   writeReg(rd, dest);
   dbg_printf("Result = 0x%x\n", dest);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("andcc_imm");};
 
 ///!Instruction andn_imm behavior method.
 void ac_behavior( andn_imm )
@@ -994,7 +996,7 @@ void ac_behavior( andn_imm )
   writeReg(rd, readReg(rs1) & ~simm13);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("andn_imm");};
 
 //!Instruction andncc_imm behavior method.
 void ac_behavior( andncc_imm )
@@ -1010,7 +1012,7 @@ void ac_behavior( andncc_imm )
   writeReg(rd, dest);
   dbg_printf("Result = 0x%x\n", dest);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("andncc_imm");};
 
 //!Instruction or_imm behavior method.
 void ac_behavior( or_imm )
@@ -1019,7 +1021,7 @@ void ac_behavior( or_imm )
   writeReg(rd, readReg(rs1) | simm13);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("or_imm");};
 
 //!Instruction orcc_imm behavior method.
 void ac_behavior( orcc_imm )
@@ -1035,7 +1037,7 @@ void ac_behavior( orcc_imm )
   writeReg(rd, dest);
   dbg_printf("Result = 0x%x\n", dest);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("orcc_imm");};
 
 ///!Instruction orn_imm behavior method.
 void ac_behavior( orn_imm )
@@ -1044,7 +1046,7 @@ void ac_behavior( orn_imm )
   writeReg(rd, readReg(rs1) | ~simm13);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("orn_imm");};
 
 ///!Instruction orncc_imm behavior method.
 void ac_behavior( orncc_imm )
@@ -1060,7 +1062,7 @@ void ac_behavior( orncc_imm )
   writeReg(rd, dest);
   dbg_printf("Result = 0x%x\n", dest);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("orncc_imm");};
 
 ///!Instruction xor_imm behavior method.
 void ac_behavior( xor_imm )
@@ -1069,7 +1071,7 @@ void ac_behavior( xor_imm )
   writeReg(rd, readReg(rs1) ^ simm13);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("xor_imm");};
 
 ///!Instruction xorcc_imm behavior method.
 void ac_behavior( xorcc_imm )
@@ -1085,7 +1087,7 @@ void ac_behavior( xorcc_imm )
   writeReg(rd, dest);
   dbg_printf("Result = 0x%x\n", dest);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("xorcc_imm");};
 
 ///!Instruction xnor_imm behavior method.
 void ac_behavior( xnor_imm )
@@ -1094,7 +1096,7 @@ void ac_behavior( xnor_imm )
   writeReg(rd, ~(readReg(rs1) ^ simm13));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("xnor_imm");};
 
 ///!Instruction xnorcc_imm behavior method.
 void ac_behavior( xnorcc_imm )
@@ -1110,7 +1112,7 @@ void ac_behavior( xnorcc_imm )
   writeReg(rd, dest);
   dbg_printf("Result = 0x%x\n", dest);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("xnorcc_imm");};
 
 ///!Instruction umul_imm behavior method.
 void ac_behavior( umul_imm )
@@ -1121,7 +1123,7 @@ void ac_behavior( umul_imm )
   Y.write( (unsigned int) (tmp >> 32));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("umul_imm");};
 
 ///!Instruction smul_imm behavior method.
 void ac_behavior( smul_imm )
@@ -1132,7 +1134,7 @@ void ac_behavior( smul_imm )
   Y.write( (int) (tmp >> 32));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("smul_imm");};
 
 ///!Instruction umulcc_imm behavior method.
 void ac_behavior( umulcc_imm )
@@ -1149,7 +1151,7 @@ void ac_behavior( umulcc_imm )
   Y.write( (unsigned int) (tmp >> 32));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("umulcc_imm");};
 
 ///!Instruction smulcc_imm behavior method.
 void ac_behavior( smulcc_imm )
@@ -1166,7 +1168,7 @@ void ac_behavior( smulcc_imm )
   Y.write( (int) (tmp >> 32));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("smulcc_imm");};
 
 ///!Instruction udiv_imm behavior method.
 void ac_behavior( udiv_imm )
@@ -1182,7 +1184,7 @@ void ac_behavior( udiv_imm )
   writeReg(rd, result);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("udiv_imm");};
 
 ///!Instruction udivcc_imm behavior method.
 void ac_behavior( udivcc_imm )
@@ -1204,7 +1206,7 @@ void ac_behavior( udivcc_imm )
   writeReg(rd, result);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("udivcc_imm");};
 
 ///!Instruction sdiv_imm behavior method.
 void ac_behavior( sdiv_imm )
@@ -1224,7 +1226,7 @@ void ac_behavior( sdiv_imm )
   writeReg(rd, result);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("sdiv_imm");};
 
 ///!Instruction sdivcc_imm behavior method.
 void ac_behavior( sdivcc_imm )
@@ -1250,7 +1252,7 @@ void ac_behavior( sdivcc_imm )
   writeReg(rd, result);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("sdivcc_imm");};
 
 ///!Instruction stb_imm behavior method.
 void ac_behavior( stb_imm )
@@ -1259,7 +1261,7 @@ void ac_behavior( stb_imm )
   MEM.write_byte(readReg(rs1) + simm13, (char) readReg(rd));
   dbg_printf("Result = 0x%x\n", (char) readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("stb_imm");};
 
 ///!Instruction sth_imm behavior method.
 void ac_behavior( sth_imm )
@@ -1268,7 +1270,7 @@ void ac_behavior( sth_imm )
   MEM.write_half(readReg(rs1) + simm13, (short) readReg(rd));
   dbg_printf("Result = 0x%x\n", (short) readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("sth_imm");};
 
 ///!Instruction st_imm behavior method.
 void ac_behavior( st_imm )
@@ -1277,7 +1279,7 @@ void ac_behavior( st_imm )
   MEM.write(readReg(rs1) + simm13, readReg(rd));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("st_imm");};
 
 ///!Instruction std_imm behavior method.
 void ac_behavior( std_imm )
@@ -1288,7 +1290,7 @@ void ac_behavior( std_imm )
   dbg_printf("Result = 0x%x\n", readReg(rd));
   dbg_printf("Result = 0x%x\n", readReg(rd+1));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("std_imm");};
 
 ///!Instruction ldstub_imm behavior method.
 void ac_behavior( ldstub_imm )
@@ -1297,7 +1299,7 @@ void ac_behavior( ldstub_imm )
   writeReg(rd, MEM.read_byte(readReg(rs1) + simm13));
   MEM.write_byte(readReg(rs1) + simm13, 0xFF);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("ldstub_imm");};
 
 ///!Instruction swap_imm behavior method.
 void ac_behavior( swap_imm )
@@ -1307,7 +1309,7 @@ void ac_behavior( swap_imm )
   MEM.write(readReg(rs1) + simm13, readReg(rd));
   writeReg(rd, swap_temp);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("swap_imm");};
 
 ///!Instruction sll_imm behavior method.
 void ac_behavior( sll_imm )
@@ -1316,7 +1318,7 @@ void ac_behavior( sll_imm )
   writeReg(rd, readReg(rs1) << simm13);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("sll_imm");};
 
 ///!Instruction srl_imm behavior method.
 void ac_behavior( srl_imm )
@@ -1325,7 +1327,7 @@ void ac_behavior( srl_imm )
   writeReg(rd, ((unsigned) readReg(rs1)) >> ((unsigned) simm13));
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("srl_imm");};
 
 ///!Instruction sra_imm behavior method.
 void ac_behavior( sra_imm )
@@ -1334,7 +1336,7 @@ void ac_behavior( sra_imm )
   writeReg(rd, ((int) readReg(rs1)) >> simm13 );
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("sra_imm");};
 
 //!Instruction add_imm behavior method.
 void ac_behavior( add_imm )
@@ -1343,7 +1345,7 @@ void ac_behavior( add_imm )
   writeReg(rd, readReg(rs1) + simm13);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("add_imm");};
 
 ///!Instruction addcc_imm behavior method.
 void ac_behavior( addcc_imm )
@@ -1361,7 +1363,7 @@ void ac_behavior( addcc_imm )
   writeReg(rd, dest);
   dbg_printf("Result = 0x%x\n", dest);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("addcc_imm");};
 
 ///!Instruction addx_imm behavior method.
 void ac_behavior( addx_imm )
@@ -1370,7 +1372,7 @@ void ac_behavior( addx_imm )
   writeReg(rd, readReg(rs1) + simm13 + PSR_icc_c);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("addx_imm");};
 
 ///!Instruction addxcc_imm behavior method.
 void ac_behavior( addxcc_imm )
@@ -1388,7 +1390,7 @@ void ac_behavior( addxcc_imm )
   writeReg(rd, dest);
   dbg_printf("Result = 0x%x\n", dest);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("addxcc_imm");};
 
 ///!Instruction sub_imm behavior method.
 void ac_behavior( sub_imm )
@@ -1397,7 +1399,7 @@ void ac_behavior( sub_imm )
   writeReg(rd, readReg(rs1) - simm13);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("sub_imm");};
 
 //!Instruction subcc_imm behavior method.
 void ac_behavior( subcc_imm )
@@ -1415,7 +1417,7 @@ void ac_behavior( subcc_imm )
   writeReg(rd, dest);
   dbg_printf("Result = 0x%x\n", dest);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("subcc_imm");};
 
 ///!Instruction subx_imm behavior method.
 void ac_behavior( subx_imm )
@@ -1424,7 +1426,7 @@ void ac_behavior( subx_imm )
   writeReg(rd, readReg(rs1) - simm13 - PSR_icc_c);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("subx_imm");};
 
 ///!Instruction subxcc_imm behavior method.
 void ac_behavior( subxcc_imm )
@@ -1442,7 +1444,7 @@ void ac_behavior( subxcc_imm )
   writeReg(rd, dest);
   dbg_printf("Result = 0x%x\n", dest);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("subxcc_imm");};
 
 ///!Instruction jmpl_imm behavior method.
 void ac_behavior( jmpl_imm )
@@ -1450,7 +1452,7 @@ void ac_behavior( jmpl_imm )
   dbg_printf("jmpl_imm r%d,%d,r%d\n", rs1, simm13, rd);
   writeReg(rd, ac_pc);
   update_pc(1,1,1,0, readReg(rs1) + simm13, ac_pc, npc);
-};
+CounterInstructionType::add("jmpl_imm");};
 
 //!Instruction save_imm behavior method.
 void ac_behavior( save_imm )
@@ -1481,7 +1483,7 @@ void ac_behavior( save_imm )
   dbg_printf(C_INVERSE "CWP: %d" C_RESET LF, CWP>>4);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("save_imm");};
 
 //!Instruction restore_imm behavior method.
 void ac_behavior( restore_imm )
@@ -1512,7 +1514,7 @@ void ac_behavior( restore_imm )
   dbg_printf(C_INVERSE "CWP: %d" C_RESET LF, CWP>>4);
   dbg_printf("Result = 0x%x\n", readReg(rd));
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("restore_imm");};
 
 //!Instruction rdy behavior method.
 void ac_behavior( rdy )
@@ -1520,7 +1522,7 @@ void ac_behavior( rdy )
   dbg_printf("rdy r%d\n", rd);
   writeReg(rd, Y.read());
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("rdy");};
 
 //!Instruction wry_imm behavior method.
 void ac_behavior( wry_imm )
@@ -1528,7 +1530,7 @@ void ac_behavior( wry_imm )
   dbg_printf("wry_imm\n");
   Y.write( readReg(rs1) ^ simm13);
   update_pc(0,0,0,0,0, ac_pc, npc);
-};
+CounterInstructionType::add("wry_imm");};
 
 //!Instruction mulscc_reg behavior method.
 void ac_behavior( mulscc_reg )
@@ -1596,3 +1598,4 @@ void ac_behavior( unimplemented )
   stop(EXIT_FAILURE);
   update_pc(0,0,0,0,0, ac_pc, npc);
 }
+

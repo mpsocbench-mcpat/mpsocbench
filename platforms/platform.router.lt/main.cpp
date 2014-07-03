@@ -60,6 +60,8 @@ const char *archc_options="";
 #include  "tlm_memory.h"
 #include  "tlm_router.h"
 #include  "tlm_lock.h"
+#include  "../../counter_instruction_type.h"
+#include  "../../counter_instruction_type.cpp"
 //#include  "tlm_atomic_wrapper.h"
 
 //#define AC_DEBUG
@@ -85,7 +87,6 @@ void load_elf(PROCESSOR_NAME &, tlm_memory& , char*, unsigned int, unsigned int)
 
 int sc_main(int ac, char *av[])
 {
-
 	sc_report_handler::set_actions("/IEEE_Std_1666/deprecated", SC_DO_NOTHING);
 	// Checking the arguments
 	if (ac!=0) {
@@ -213,6 +214,9 @@ int sc_main(int ac, char *av[])
 	}
 	delete processors;
 
+
+	CounterInstructionType::print();
+	
 	return status; 
 
 

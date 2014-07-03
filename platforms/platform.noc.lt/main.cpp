@@ -63,6 +63,8 @@ const char *archc_options="";
 #include  "tlm_noc.h"
 #include  "tlm_lock.h"
 #include  "wrapper_noc.h"
+#include  "../../counter_instruction_type.h"
+#include  "../../counter_instruction_type.cpp"
 
 //#include  "tlm_atomic_wrapper.h"
 
@@ -312,6 +314,8 @@ int sc_main(int ac, char *av[])
 		delete processors[i];
 	}
 	delete processors;
+
+	CounterInstructionType::print();
 
 	return status; 
 }

@@ -50,6 +50,8 @@ static int processors_started = 0;
 #ifdef DEBUG_MODEL
 #include <stdarg.h>
 
+#include  "../../counter_instruction_type.h"
+
 
 
 static inline int dprintf(const char *format, ...) {
